@@ -16,8 +16,8 @@ class Book extends Model
         'year',
         'publisher',
         'city',
-        'bookshelf_id',
         'cover',
+        'bookshelf_id',
     ];
 
     public function bookshelf(): BelongsTo
@@ -36,7 +36,9 @@ class Book extends Model
             $books_filter[$i]['author'] = $books[$i]->author;
             $books_filter[$i]['year'] = $books[$i]->year;
             $books_filter[$i]['publisher'] = $books[$i]->publisher;
-            $books_filter[$i]['bookshelf'] = $books[$i]->bookshelf->name;
+            $books_filter[$i]['city'] = $books[$i]->city;
+            $books_filter[$i]['cover'] = $books[$i]->cover;
+            $books_filter[$i]['bookshelf_id'] = $books[$i]->bookshelf->id;
         }
         return $books_filter;
     }

@@ -25,11 +25,14 @@ class BooksExport implements WithHeadings, ShouldAutoSize, FromArray
     {
         return [
             'No',
-            'Judul',
-            'Penulis',
-            'Tahun',
-            'Penerbit',
-            'Rak Buku',
+            'title',
+            'author',
+            'year',
+            'publisher',
+            'city',
+            'cover',
+            'bookshelf_id',
+            // 'Rak Buku',
         ];
     }
 }

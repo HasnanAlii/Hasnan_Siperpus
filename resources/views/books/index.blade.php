@@ -88,11 +88,11 @@
                                 <x-file-input id="cover" name="file" class="mt-1 block w-full" required />
                             </div>
                             <div class="mt-6 flex justify-end">
-                                <x-secondary-button x-on:click="$dispatch('close')">
+                                <x-secondary-button class="h-9 mt-3" x-on:click="$dispatch('close')">
                                     {{ __('Batal') }}
                                 </x-secondary-button>
                                 <x-primary-button class="ml-3">
-                                    {{ __('Upload') }}
+                                    {{ __('Import') }}
                                 </x-primary-button>
                             </div>
                         </form>

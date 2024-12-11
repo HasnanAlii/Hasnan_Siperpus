@@ -55,8 +55,6 @@
                                 @hasrole('pustakawan') 
                                 <td class="text-center">
                                     <x-primary-button tag="a"
-                                href="{{ route('books.borrow', $book->id) }}">Pinjam</x-primary-button>
-                                    <x-primary-button tag="a"
                                             href="{{ route('book.edit', $book->id) }}">Edit</x-primary-button>
                                         <x-danger-button x-data=""
                                             x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion')"

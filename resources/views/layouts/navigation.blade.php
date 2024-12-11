@@ -16,20 +16,34 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    {{-- @hasrole('mahasiswa')
+                    @hasrole('mahasiswa')
                         <x-nav-link :href="route('book')" :active="request()->routeIs('book')">
                             {{ __('List Buku') }}
                         </x-nav-link>
-                    @endhasrole --}}
+                        <x-nav-link :href="route('loans')" :active="request()->routeIs('loans') ">
+                            {{ __('Pinjaman') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('loans_detail')" :active="request()->routeIs('loans_detail') ">
+                            {{ __('Detail Pinjaman') }}
+                        </x-nav-link>
+                      
+                    @endhasrole 
 
-                    {{-- @hasrole('pustakawan')
+                    @hasrole('pustakawan')
+                    
                         <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
                             {{ __('Book') }}
                         </x-nav-link>
-                    @endhasrole --}}
-                    <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
+                        <x-nav-link :href="route('loans')" :active="request()->routeIs('loans') ">
+                            {{ __('Pinjaman') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('loans_detail')" :active="request()->routeIs('loans_detail') ">
+                            {{ __('Detail Pinjaman') }}
+                        </x-nav-link>
+                    @endhasrole
+                    {{-- <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
                         {{ __('Book') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                 </div>
             </div>
 

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('book_id');
             $table->boolean('is_return');
             $table->timestamps();
-            $table->foreign('loan_id')->references('id')->on('loans');
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('loan_id')->references('id');
+            $table->foreign('book_id')->references('id');
         });
     }
 
@@ -27,6 +27,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('loan_details', function (Blueprint $table) {
+            $table->dropForeign(['loan_id']);
+            $table->dropForeign(['book_id']); 
+        });
+
         Schema::dropIfExists('loan_details');
     }
 };

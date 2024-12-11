@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id');
             $table->date('loan_at');
             $table->date('return_at');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('book_id')->references('id')->on('books');
+
+
         });
     }
 
@@ -26,6 +30,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('loans', function (Blueprint $table) {
+            $table->dropForeign(['user_id']); // Drop the foreign key constraint for user_id
+            $table->dropForeign(['book_id']); // Drop the foreign key constraint for book_id
+        });
         Schema::dropIfExists('loans');
     }
 };

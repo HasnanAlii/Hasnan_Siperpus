@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\LoansDetailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/books/print', [BookController::class, 'print'])->name('book.print');
     Route::get('/books/export', [BookController::class, 'export'])->name('book.export');
     Route::post('/books/import', [BookController::class, 'import'])->name('book.import');
+    Route::get('/books/{book}/borrow', [LoanController::class, 'borrow'])->name('books.borrow');
+    Route::get('/books/{id}/loan', [LoanController::class, 'pinjam'])->name('book.loan');
+    Route::get('/loans_detail', [LoanController::class, 'index'])->name('loans_detail');
+    Route::get('/loans', [LoansDetailController::class, 'show'])->name('loans');
+    Route::get('/loans/return/{loanId}', [LoanController::class, 'returnBook'])->name('loans.return');
+    Route::delete('/loans_details/{id}', [LoansDetailController::class, 'destroy'])->name('destroy');
+    Route::delete('/loans/{id}', [LoanController::class, 'destroy'])->name('loans.destroy');
+
+
+
+
+
+
+
+   
+
+   
+
+
 });
 
 require __DIR__ . '/auth.php';

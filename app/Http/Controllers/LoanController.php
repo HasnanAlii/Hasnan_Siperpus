@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookshelf;
 use App\Models\LoanDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Loan;
@@ -25,21 +26,25 @@ public function borrow(Request $request, $bookId)
 {
     // Find the book to be borrowed
     $book = Book::findOrFail($bookId);
+    $user= User::findOrFail($bookId);
+
 
     // Create the loan record
     $loan = Loan::create([
         'user_id' => $request->user()->id,
+        'name'=> $user->name,
         'book_id' => $book->id,
-         'title' => $book->title,
+        'title' => $book->title,
         'loan_at' => now(),
         'return_at' => now()->addDays(14), // Default 14 hari // Initially null, will be updated later when returned
     ]);
 
     // Create the loan details record for each book borrowed (you can adjust if multiple books are allowed per loan)
     LoanDetail::create([
+        'user_id' => $user->id,
         'loan_id' => $loan->id,
         'book_id' => $book->id,
-        'is_return' => false, // Initially, the book is not returned
+        'is_return' => 0,
     ]);
 
     // Return a success response
@@ -63,7 +68,7 @@ public function returnBook(Request $request, $loanId)
 
     // Update the loan detail's is_return status
     LoanDetail::where('loan_id', $loan->id)->update([
-        'is_return' => true,
+        'is_return' => 1,
     ]);
     $notification = array(
         'message' => 'Buku berhasil dikembalikan',

@@ -47,8 +47,11 @@
                                 @hasrole('mahasiswa')
                                 <td class="text-center">
                                     
-                                <x-primary-button tag="a"
-                                href="{{ route('books.borrow', $book->id) }}">Pinjam</x-primary-button>
+                                {{-- <x-primary-button tag="a"
+                                href="{{ route('books.borrow', $book->id) }}">Pinjam</x-primary-button> --}}
+                                <x-primary-button x-data=""
+                                            x-on:click.prevent="$dispatch('open-modal', 'confirm-borrow')"
+                                            x-on:click="$dispatch('set-action', '{{ route('books.borrow', $book->id) }}')">{{ __('Pinjam') }}</x-primary-button>
                                 
                                 </td>
                                 @endhasrole 
@@ -64,6 +67,26 @@
                             </tr>
                         @endforeach
                     </x-table>
+                    <x-modal name="confirm-borrow"  focusable maxWidth="xl">
+                        <form method="post" x-bind:action="action" class="p-6">
+                            @method('get')
+                            @csrf
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                {{ __('Apakah anda yakin ingin meminjam Buku?') }}
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                {{ __('Anda dapat meminjam buku maksimal 14 hari, lebih dari itu maka akan di beri sanksi') }}
+                            </p>
+                            <div class="mt-6 flex justify-end">
+                                <x-secondary-button x-on:click="$dispatch('close')">
+                                    {{ __('Cancel') }}
+                                </x-secondary-button>
+                                <x-succes-button class="ml-3">
+                                    {{ __('Pinjam') }}
+                                </x-succes-button>
+                            </div>
+                        </form>
+                    </x-modal>
 
                     <x-modal name="confirm-book-deletion" focusable maxWidth="xl">
                         <form method="post" x-bind:action="action" class="p-6">

@@ -23,9 +23,9 @@
                         <x-nav-link :href="route('loans')" :active="request()->routeIs('loans') ">
                             {{ __('Pinjaman') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('loans_detail')" :active="request()->routeIs('loans_detail') ">
+                        {{-- <x-nav-link :href="route('loans_detail')" :active="request()->routeIs('loans_detail') ">
                             {{ __('Detail Pinjaman') }}
-                        </x-nav-link>
+                        </x-nav-link> --}}
                       
                     @endhasrole 
 
@@ -41,9 +41,7 @@
                             {{ __('Detail Pinjaman') }}
                         </x-nav-link>
                     @endhasrole
-                    {{-- <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
-                        {{ __('Book') }}
-                    </x-nav-link> --}}
+                
                 </div>
             </div>
 

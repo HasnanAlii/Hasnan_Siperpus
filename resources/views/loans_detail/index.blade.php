@@ -21,7 +21,8 @@
                         <x-slot name="header">
                             <tr class="py-10">
                                 <th class="text-center"scope="col">#</th>
-                                <th class="text-center"scope="col">ID</th>
+                                <th class="text-center"scope="col">ID Pinjaman</th>
+                                <th class="text-center"scope="col">Peminjam</th>
                                 <th class="text-center" scope="col">Judul Buku</th>
                                 <th class="text-center"scope="col">Tanggal Pinjam</th>
                                 <th class="text-center"scope="col">Tanggal Kembali</th>
@@ -33,6 +34,7 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $loan->id }}</td>
+                            <td class="text-center">{{ $loan->user->name }}</td>
                             <td class="text-center">{{ $loan->book->title }}</td>
                             <td class="text-center">{{ $loan->loan_at }}</td>
                             <td class="text-center">{{ $loan->return_at }}</td>
@@ -52,6 +54,8 @@
                         </tr>
                     @endforeach
                     </x-table>
+
+                   
                     <x-modal name="confirm-book-deletion" focusable maxWidth="xl">
                         <form method="post" x-bind:action="action" class="p-6">
                             @method('delete')

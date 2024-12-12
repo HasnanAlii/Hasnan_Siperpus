@@ -13,7 +13,8 @@ class LoanController extends Controller
 {
     public function index()
     {
-        $loans = Loan::with('book', 'user')->where('user_id', auth()->id())->get();
+        // $loans = Loan::with('book', 'user')->where('user_id', auth()->id())->get();
+        $loans = Loan::all(); 
 
         return view('loans_detail.index', compact('loans'));
     }
@@ -44,7 +45,7 @@ public function borrow(Request $request, $bookId)
         'user_id' => $user->id,
         'loan_id' => $loan->id,
         'book_id' => $book->id,
-        'is_return' => 0,
+        'is_return' => false,
     ]);
 
     // Return a success response
@@ -68,7 +69,7 @@ public function returnBook(Request $request, $loanId)
 
     // Update the loan detail's is_return status
     LoanDetail::where('loan_id', $loan->id)->update([
-        'is_return' => 1,
+        'is_return' => true,
     ]);
     $notification = array(
         'message' => 'Buku berhasil dikembalikan',

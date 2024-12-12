@@ -52,7 +52,7 @@
                                 <x-primary-button x-data=""
                                             x-on:click.prevent="$dispatch('open-modal', 'confirm-borrow')"
                                             x-on:click="$dispatch('set-action', '{{ route('books.borrow', $book->id) }}')">{{ __('Pinjam') }}</x-primary-button>
-                                
+
                                 </td>
                                 @endhasrole 
                                 @hasrole('pustakawan') 

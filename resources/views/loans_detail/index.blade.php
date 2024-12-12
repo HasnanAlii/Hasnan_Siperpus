@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Pinjaman') }}
+            {{ __('Detail Pinjaman') }}
         </h2>
     </x-slot>
 
@@ -10,13 +10,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @hasrole('pustakawan')
-                    <x-primary-button tag="a" href="{{ route('book.print') }}">Print PDF</x-primary-button>
-
-                    <x-primary-button tag="a" href="{{ route('book.export') }}" target="_blank">Export
-                        Excel</x-primary-button>
-                    <x-primary-button x-data=""
-                        x-on:click.prevent="$dispatch('open-modal', 'import-book')">{{ __('Import Excel') }}</x-primary-button>
-                        @endrole
+                    <x-primary-button tag="a" href="{{ route('loan.print') }}">Print PDF</x-primary-button>
+                    <x-primary-button tag="a" href="{{ route('loan.export') }}" target="_blank">Export Excel</x-primary-button>
+                    @endrole
                     <x-table>
                         <x-slot name="header">
                             <tr class="py-10">
@@ -25,7 +21,7 @@
                                 <th class="text-center"scope="col">Peminjam</th>
                                 <th class="text-center" scope="col">Judul Buku</th>
                                 <th class="text-center"scope="col">Tanggal Pinjam</th>
-                                <th class="text-center"scope="col">Tanggal Kembali</th>
+                                <th class="text-center"scope="col">Tanggal Pengembalian</th>
                                 <th class="text-center"scope="col">Status</th>
                                 <th class="text-center"scope="col">Aksi</th>
                             </tr>
@@ -46,9 +42,11 @@
                                 @endif
                             </td>
                             <td class="text-center">
+                                @hasrole('pustakawan')
                                 <x-danger-button x-data=""
                                 x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion')"
                                 x-on:click="$dispatch('set-action', '{{ route('loans.destroy', $loan->id) }}')">{{ __('Delete') }}</x-danger-button>
+                                @endrole
                     </td>
                             </td>
                         </tr>

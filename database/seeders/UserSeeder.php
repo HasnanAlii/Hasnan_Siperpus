@@ -14,14 +14,14 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'mahasiswa',
-            'email' => 'mahasiswa@unsur.ac.id',
-        ])->assignRole('mahasiswa')->givePermissionTo('view_book');
+            'name' => ' pustakawan',
+            'email' => 'pustakawan@unsur.ac.id',
+        ])->assignRole('pustakawan')->givePermissionTo(['edit_book']);
 
         User::factory()->create([
-            'name' => 'pustakawan',
-            'email' => 'pustakawan@unsur.ac.id',
-        ])->assignRole('pustakawan')
-        ->givePermissionTo(['edit_book','edit_user']);
+            'name' => 'mahasiswa',
+            'email' => 'mahasiswa@unsur.ac.id',
+        ])->assignRole('mahasiswa')
+        ->givePermissionTo('view_book');;
     }
 }

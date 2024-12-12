@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/loans/return/{loanId}', [LoanController::class, 'returnBook'])->name('loans.return');
     Route::delete('/loans_details/{id}', [LoansDetailController::class, 'destroy'])->name('destroy');
     Route::delete('/loans/{id}', [LoanController::class, 'destroy'])->name('loans.destroy');
+    Route::get('/loans_details/export', [LoansDetailController::class, 'export'])->name('loan.export');
+    Route::get('/loans_details/print', [LoansDetailController::class, 'print'])->name('loan.print');
 
 
 
